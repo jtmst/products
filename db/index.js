@@ -46,6 +46,7 @@ const productSchema = new mongoose.Schema({
 // ---------------init model ------------------------
 let Product = mongoose.model('Product', productSchema)
 let Style = mongoose.model('Style', productSchema)
+let Sku = mongoose.model('Sku', productSchema)
 
 
 
@@ -60,7 +61,11 @@ let productIdSearch = (id) => {
 }
 
 let stylesByProdId = (id) => {
+    // let results = [];
+    // results.push(Style.find({ productId: id }))
+    // console.log(results)
     return Style.find({ productId: id })
+    // results.push(Sku.find())
 }
 
 module.exports.productListFind = productListFind;
