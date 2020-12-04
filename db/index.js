@@ -91,6 +91,13 @@ let stylesByProdId = (id) => {
             }
         },
         {
+            $project: {
+                "photos._id": 0,
+                "photos.id": 0,
+                "photos. styleId": 0
+            }
+        },
+        {
             $lookup:
             {
                 from: "skus",
@@ -99,6 +106,13 @@ let stylesByProdId = (id) => {
                 as: "skus"
             }
         },
+        {
+            $project: {
+                "skus._id": 0,
+                "skus.id": 0,
+                "skus. styleId": 0
+            }
+        }
     ])
 }
 
