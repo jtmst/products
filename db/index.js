@@ -45,6 +45,7 @@ const productSchema = new mongoose.Schema({
 
 // ---------------init model ------------------------
 let Product = mongoose.model('Product', productSchema)
+let Feature = mongoose.model('Feature', productSchema)
 let Style = mongoose.model('Style', productSchema)
 let Sku = mongoose.model('Sku', productSchema)
 
@@ -57,15 +58,48 @@ let productListFind = (count = 5, page = 1) => {
 }
 // returns all product level information for a specific product id
 let productIdSearch = (id) => {
-    return Product.find({ id: id })
+    return Product.aggregate([
+        { $match: { id: id } },
+        {
+            $lookup:
+            {
+                from: "features",
+                localField: "id",
+                foreignField: "product_id",
+                as: "features"
+            }
+        },
+        {
+            $project: {
+                "features._id": 0,
+                "features.product_id": 0
+            }
+        }
+    ])
 }
 
 let stylesByProdId = (id) => {
-    // let results = [];
-    // results.push(Style.find({ productId: id }))
-    // console.log(results)
-    return Style.find({ productId: id })
-    // results.push(Sku.find())
+    return Style.aggregate([
+        { $match: { id: id } },
+        {
+            $lookup:
+            {
+                from: "photos",
+                localField: "id",
+                foreignField: " styleId",
+                as: "photos"
+            }
+        },
+        {
+            $lookup:
+            {
+                from: "skus",
+                localField: "id",
+                foreignField: " styleId",
+                as: "skus"
+            }
+        },
+    ])
 }
 
 module.exports.productListFind = productListFind;
