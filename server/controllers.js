@@ -22,5 +22,11 @@ module.exports = {
                 res.status(200).send(styles)
             })
     },
-    getRelated: function (req, res) { }
+    getRelated: function (req, res) {
+        let { product_id } = req.params
+        db.relatedByProdId(product_id)
+            .then(relatedProds => {
+                res.status(200).send(relatedProds)
+            })
+    }
 }

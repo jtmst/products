@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema({
     },
     related: {
         current_product_id: Number,
-        related_Product_id: Number
+        related_product_id: Number
     },
     skus: {
         id: Number,
@@ -45,9 +45,9 @@ const productSchema = new mongoose.Schema({
 
 // ---------------init model ------------------------
 let Product = mongoose.model('Product', productSchema)
-let Feature = mongoose.model('Feature', productSchema)
 let Style = mongoose.model('Style', productSchema)
-let Sku = mongoose.model('Sku', productSchema)
+let Related = mongoose.model('Related', productSchema)
+
 
 
 
@@ -116,6 +116,11 @@ let stylesByProdId = (id) => {
     ])
 }
 
+let relatedByProdId = (id) => {
+    return Related.find({ current_product_id: id }).distinct("related_product_id")
+}
+
 module.exports.productListFind = productListFind;
 module.exports.productIdSearch = productIdSearch;
 module.exports.stylesByProdId = stylesByProdId;
+module.exports.relatedByProdId = relatedByProdId;
