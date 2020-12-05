@@ -2,10 +2,12 @@ FROM node:12
 
 WORKDIR /products
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3000
+COPY . .
+
+EXPOSE 1337
 
 CMD ["npm", "start"]
