@@ -6,7 +6,7 @@ provider:
   memorySize: 128
 functions:
   app:
-    handler: app/app.handler
+    handler: index.handler
     events:
-      - http: Any {proxy+}
-      - http: ANY /
+      - http: ANY /products
+      - http: 'ANY /products/{proxy+}'
