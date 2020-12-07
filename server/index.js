@@ -6,7 +6,7 @@ const router = require("./router.js")
 const newrelic = require('newrelic');
 const serverless = require('serverless-http')
 
-const app = express()
+
 
 app.use(bodyParser.json())
 app.use(morgan('combined'))

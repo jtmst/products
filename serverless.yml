@@ -7,3 +7,6 @@ provider:
 functions:
   app:
     handler: app/app.handler
+    events:
+      - http: Any {proxy+}
+      - http: ANY /
