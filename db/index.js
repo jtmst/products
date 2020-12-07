@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/products')
+const config = require('../config.js')
+mongoose.connect(config.MONGO_URL)
 
 
 // --------------------- Main Schema for all collections -------------------------
