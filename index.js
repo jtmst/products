@@ -1,11 +1,11 @@
 const express = require('express')
-const app = express()
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
-const router = require("./router.js")
+const router = require("./server/router.js")
 const newrelic = require('newrelic');
-const serverless = require('serverless-http')
 
+const serverless = require('serverless-http')
+const app = express()
 
 
 app.use(bodyParser.json())
