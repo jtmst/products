@@ -26,7 +26,9 @@ npm start
 This app was build and deployed twice,  once utilizing an AWS EC2 virtual machine, and again using AWS Lambda serverless functions.  The intent was to compare and contrast ease of setup, and performance.
 
 ### Serverless Results
-![K6 Lambda Results](k6_lambda.PNG)
+#### 107 ms Response Time
+![K6 Lambda Results](readme_assets/k6_lambda.PNG)
 
 ### EC2 Results
+#### 21 ms Response Time
 ![K6 EC2 Results](readme_assets/k6_ec2.PNG)
